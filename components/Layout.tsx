@@ -7,7 +7,7 @@ type Props = {
   title?: string
 }
 
-export default function Layout({ children, title = 'This is the default title' }: Props) {
+export default function Layout({ children, title = 'Blog | Next.js' }: Props) {
   return (
     <div>
       <Head>

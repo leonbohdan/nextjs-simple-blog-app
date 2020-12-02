@@ -1,9 +1,13 @@
 import Layout from '../components/Layout';
+import CreatePost from '../components/CreatePost';
 
-export default function CreatePost() {
+export default function Create() {
   return (
-    <Layout>
-      <h1>CreatePost</h1>
-    </Layout>
+    <>
+      <Layout title="Blog | Create Post">
+        <h1>CreatePost</h1>
+        <CreatePost />
+      </Layout>
+    </>
   );
 }
