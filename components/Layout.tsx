@@ -7,7 +7,7 @@ type Props = {
   title?: string
 }
 
-export const Layout = ({ children, title = 'This is the default title' }: Props) => {
+export default function Layout({ children, title = 'This is the default title' }: Props) {
   return (
     <div>
       <Head>
@@ -18,11 +18,11 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
         <meta name="description" content="this is nextjs app" />
       </Head>
 
-      <header></header>
+      <header>-----------</header>
 
       <main>{children}</main>
 
-      <footer></footer>
+      <footer>--------</footer>
     </div>
   );
 }
