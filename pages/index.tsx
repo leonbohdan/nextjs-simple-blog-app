@@ -9,11 +9,8 @@ export interface PostProps {
 }
 
 export default function IndexPage({ posts }: PostProps) {
-  console.log(posts);
-
   return (
     <Layout title="Blog | Home | Posts">
-      <h1>Blog with Next.js 👋</h1>
       <p>
         <Link href="/createPost">
           <button>Create new Post</button>

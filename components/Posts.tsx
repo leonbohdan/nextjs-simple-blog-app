@@ -6,11 +6,9 @@ export interface PostProps{
 }
 
 export const Posts = ({ posts }: PostProps) => {
-
   return (
     <>
       <h1>Posts</h1>
-      {/* <pre>{JSON.stringify([...posts].reverse(), null, 2)}</pre> */}
       <ul>
         {[...posts].reverse().map(post => (
           <li key={post.id}>

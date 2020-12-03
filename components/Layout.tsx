@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 
 type Props = {
@@ -18,11 +17,16 @@ export default function Layout({ children, title = 'Blog | Next.js' }: Props) {
         <meta name="description" content="this is nextjs app" />
       </Head>
 
-      <header>-----------</header>
+      <header>
+        <h1>Blog with Next.js 👋</h1>
+        <p>Real stories & opinions about running an independent membership business.</p>
+      </header>
+      <hr />
 
       <main>{children}</main>
 
-      <footer>--------</footer>
+      <hr />
+      <footer>Blog Footer</footer>
     </div>
   );
 }

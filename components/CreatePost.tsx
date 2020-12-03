@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
+
+type RequestOptionsProps = {
+  method: string;
+  headers: {};
+  body: string;
+  redirect: any;
+};
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
-  console.log(title);
-  console.log(body);
-  
-
-  async function add() {
+  async function addPost() {
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -17,7 +21,7 @@ export default function CreatePost() {
       body: `${body}`,
     });
 
-    let requestOptions = {
+    let requestOptions: RequestOptionsProps = {
       method: 'POST',
       headers: myHeaders,
       body: raw,
@@ -30,14 +34,12 @@ export default function CreatePost() {
       .catch((error) => console.log('error', error));
   }
 
-  useEffect(() => {
-    
-  }, []);
-
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    add();
+    addPost();
+    setTitle('');
+    setBody('');
   }
 
   return (
@@ -81,7 +83,11 @@ export default function CreatePost() {
         </label>
 
         <button type="submit">Create</button>
+
+        <p>Post created!</p>
       </form>
+
+      <Link href="/">Back to posts</Link>
     </>
   );
 }
