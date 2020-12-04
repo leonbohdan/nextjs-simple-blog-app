@@ -1,15 +1,46 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import Head from 'next/head';
 
 type Props = {
   children?: ReactNode
   title?: string
 }
 
-export const Layout = ({ children, title = 'This is the default title' }: Props) => {
+const Body = styled.body`
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #eee;
+`;
+
+const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4em;
+  background: #0b0d0d;
+  color: white;
+  text-align: center;
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background: #0b0d0d;
+  color: white;
+`;
+
+const Title = styled.h1`
+  margin: 1em;
+`
+
+export default function Layout({ children, title = 'Blog | Next.js' }: Props) {
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -18,11 +49,16 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
         <meta name="description" content="this is nextjs app" />
       </Head>
 
-      <header></header>
+      <Body>
+        <Header>
+          <Title>Blog with Next.js 👋</Title>
+          <p>Real stories & opinions about running an independent membership business.</p>
+        </Header>
 
-      <main>{children}</main>
+        <main>{children}</main>
 
-      <footer></footer>
-    </div>
+        <Footer>Blog Footer</Footer>
+      </Body>
+    </>
   );
 }
