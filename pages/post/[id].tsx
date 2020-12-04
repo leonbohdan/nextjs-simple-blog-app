@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import Link from 'next/link';
@@ -35,17 +36,45 @@ export default function PostDetail({ post: serverPost }: PostProps) {
     );
   }
 
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 50px;
+  `;
+
+  const Title = styled.h1`
+    text-align: center;
+    margin: 20px 0;
+  `;
+
+  const Lin = styled.a`
+    color: black;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    transition: color 0.4s ease-in-out;
+
+    :hover {
+      color: lightgray;
+    }
+  `;
+
   return (
     <Layout title={`Blog | Post#${post.id}`}>
-      <h1>
-        {post.title} #{post.id}
-      </h1>
-      <p>{post.title}</p>
-      <p>{post.body}</p>
-      <Comments comments={post.comments} id={post.id} />
-      <Link href="/">
-        <a>Back to all posts</a>
-      </Link>
+      <Container>
+        <Title>
+          {post.title} #{post.id}
+        </Title>
+        <p>{post.body}</p>
+        <Comments comments={post.comments} id={post.id} />
+        <Link href="/">
+          <Lin>Back to all posts</Lin>
+        </Link>
+      </Container>
     </Layout>
   );
 };

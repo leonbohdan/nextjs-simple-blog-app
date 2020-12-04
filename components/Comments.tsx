@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 type Comment = {
   id: number;
@@ -17,6 +18,49 @@ type RequestOptionsProps = {
   body: string;
   redirect: any;
 };
+
+const Button = styled.button`
+  display: inline-block;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  background: transparent;
+  color: black;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: 2px solid black;
+  border-radius: 40px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.4s ease-in-out;
+
+  :hover {
+    background: lightgray;
+  }
+
+  :active {
+    transform: scale(0.99);
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 50px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  margin: 20px 0;
+`;
 
 export const Comments = ({ comments, id }: CommentsProps) => {
   const [comment, setComment] = useState('');
@@ -49,8 +93,8 @@ export const Comments = ({ comments, id }: CommentsProps) => {
   };
 
   return (
-    <>
-      <h1>Comments</h1>
+    <Container>
+      <Title>Comments</Title>
       {comments.length > 0 ? (
         <ol>
           {comments.map((comment: Comment) => (
@@ -62,7 +106,7 @@ export const Comments = ({ comments, id }: CommentsProps) => {
           <h3>Here is no comments yet!</h3>
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <p>Write your comment below!</p>
         <textarea
           name="body"
@@ -77,8 +121,8 @@ export const Comments = ({ comments, id }: CommentsProps) => {
             setComment(event.target.value);
           }}
         ></textarea>
-        <button>Send comment</button>
-      </form>
-    </>
+        <Button>Send comment</Button>
+      </Form>
+    </Container>
   );
 };

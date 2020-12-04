@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 type RequestOptionsProps = {
   method: string;
@@ -7,6 +8,59 @@ type RequestOptionsProps = {
   body: string;
   redirect: any;
 };
+
+const Button = styled.button`
+  display: inline-block;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  background: transparent;
+  color: black;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: 2px solid black;
+  border-radius: 40px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.4s ease-in-out;
+
+  :hover {
+    background: lightgray;
+  }
+
+  :active {
+    transform: scale(0.99);
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+`;
+
+const Lin = styled.a`
+  color: black;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 10px;
+  transition: color 0.4s ease-in-out;
+
+  :hover {
+    color: lightgray;
+  }
+`;
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');
@@ -44,10 +98,8 @@ export default function CreatePost() {
 
   return (
     <>
-      <h1>CreatePost Component</h1>
-
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">
+      <Form onSubmit={handleSubmit}>
+        <Label htmlFor="title">
           Title
           <input
             id="title"
@@ -62,10 +114,9 @@ export default function CreatePost() {
               setTitle(event.target.value);
             }}
           ></input>
-        </label>
+        </Label>
 
-        <label htmlFor="text">
-          Text
+        <Label htmlFor="text">
           <textarea
             id="text"
             name="body"
@@ -80,14 +131,17 @@ export default function CreatePost() {
               setBody(event.target.value);
             }}
           ></textarea>
-        </label>
+        </Label>
 
-        <button type="submit">Create</button>
+        <Button type="submit">Create</Button>
 
-        <p>Post created!</p>
-      </form>
+        {/* <p>Post created!</p> */}
 
-      <Link href="/">Back to posts</Link>
+        <Link href="/">
+          <Lin>Back to posts</Lin>
+        </Link>
+      </Form>
+
     </>
   );
 }
